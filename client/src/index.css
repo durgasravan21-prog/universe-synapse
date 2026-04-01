@@ -1,0 +1,336 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* UniVerse Synapse Color Palette */
+  --color-navy: #1e3a5f;
+  --color-navy-light: #2d4a73;
+  --color-teal: #0ea5a5;
+  --color-teal-light: #14b8a6;
+  --color-neutral-warm: #f5f3f0;
+  --color-slate: #475569;
+  --color-slate-light: #64748b;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  
+  --primary: var(--color-navy);
+  --primary-foreground: #ffffff;
+  --sidebar-primary: var(--color-navy);
+  --sidebar-primary-foreground: #ffffff;
+  --chart-1: var(--color-teal);
+  --chart-2: var(--color-navy);
+  --chart-3: #3b82f6;
+  --chart-4: #8b5cf6;
+  --chart-5: #ec4899;
+  --radius: 0.5rem;
+  --background: #ffffff;
+  --foreground: var(--color-slate);
+  --card: #ffffff;
+  --card-foreground: var(--color-slate);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-slate);
+  --secondary: var(--color-neutral-warm);
+  --secondary-foreground: var(--color-slate);
+  --muted: #e2e8f0;
+  --muted-foreground: var(--color-slate-light);
+  --accent: var(--color-teal);
+  --accent-foreground: #ffffff;
+  --destructive: var(--color-error);
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #f1f5f9;
+  --ring: var(--color-teal);
+  --sidebar: var(--color-navy);
+  --sidebar-foreground: #ffffff;
+  --sidebar-accent: var(--color-teal);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: var(--color-teal);
+}
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Geist+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Geist Sans', sans-serif;
+  }
+  
+  h1 {
+    @apply text-3xl font-bold text-primary;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    @apply text-2xl font-semibold text-primary;
+    line-height: 1.3;
+  }
+  
+  h3 {
+    @apply text-lg font-semibold text-foreground;
+    line-height: 1.4;
+  }
+  
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+  
+  /* UniVerse Synapse Custom Components */
+  
+  .sidebar {
+    @apply fixed left-0 top-0 h-screen w-64 bg-sidebar text-sidebar-foreground shadow-lg overflow-y-auto;
+  }
+  
+  .sidebar-header {
+    @apply p-6 border-b border-sidebar-border;
+  }
+  
+  .sidebar-nav {
+    @apply p-4 space-y-2;
+  }
+  
+  .sidebar-nav-item {
+    @apply px-4 py-3 rounded-md text-sm font-medium transition-colors cursor-pointer;
+  }
+  
+  .sidebar-nav-item:hover {
+    @apply bg-sidebar-accent;
+    opacity: 0.8;
+  }
+  
+  .sidebar-nav-item.active {
+    @apply bg-sidebar-accent text-sidebar-accent-foreground;
+  }
+  
+  .main-content {
+    @apply ml-64 min-h-screen;
+    background-color: #f5f3f0;
+  }
+  
+  .content-header {
+    @apply bg-white border-b border-border p-6 shadow-sm;
+  }
+  
+  .content-body {
+    @apply p-6;
+  }
+  
+  .breadcrumb {
+    @apply flex items-center space-x-2 text-sm text-muted-foreground mb-6;
+  }
+  
+  .breadcrumb-item {
+    @apply flex items-center space-x-2;
+  }
+  
+  .breadcrumb-separator {
+    @apply text-muted-foreground;
+  }
+  
+  .role-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  
+  .role-badge.owner {
+    @apply bg-purple-100 text-purple-800;
+  }
+  
+  .role-badge.admin {
+    @apply bg-blue-100 text-blue-800;
+  }
+  
+  .role-badge.staff {
+    @apply bg-green-100 text-green-800;
+  }
+  
+  .role-badge.student {
+    @apply bg-amber-100 text-amber-800;
+  }
+  
+  .card-elevated {
+    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow;
+  }
+  
+  .form-group {
+    @apply mb-6;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-foreground mb-2;
+  }
+  
+  .form-input {
+    @apply w-full px-4 py-2 border border-border rounded-md bg-input focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all;
+  }
+  
+  .form-error {
+    color: #ef4444;
+    @apply text-sm mt-1;
+  }
+  
+  .btn-primary {
+    @apply px-4 py-2 bg-primary text-primary-foreground rounded-md font-medium transition-all;
+  }
+  
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2 bg-secondary text-secondary-foreground rounded-md font-medium transition-all border border-border;
+  }
+  
+  .btn-secondary:hover {
+    opacity: 0.8;
+  }
+  
+  .btn-accent {
+    @apply px-4 py-2 bg-accent text-accent-foreground rounded-md font-medium transition-all;
+  }
+  
+  .btn-accent:hover {
+    opacity: 0.9;
+  }
+  
+  .btn-danger {
+    @apply px-4 py-2 bg-destructive text-destructive-foreground rounded-md font-medium transition-all;
+  }
+  
+  .btn-danger:hover {
+    opacity: 0.9;
+  }
+  
+  .table-container {
+    @apply overflow-x-auto;
+  }
+  
+  .table {
+    @apply w-full text-sm;
+  }
+  
+  .table thead {
+    @apply bg-secondary border-b border-border;
+  }
+  
+  .table th {
+    @apply px-6 py-3 text-left font-semibold text-foreground;
+  }
+  
+  .table td {
+    @apply px-6 py-4 border-b border-border;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f5f3f0;
+  }
+  
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+  
+  .badge-warning {
+    background-color: rgb(245 158 11 / 0.2);
+    color: #f59e0b;
+  }
+  
+  .badge-error {
+    background-color: rgb(239 68 68 / 0.2);
+    color: #ef4444;
+  }
+  
+  .badge-info {
+    @apply bg-blue-100 text-blue-800;
+  }
+}
